@@ -1,0 +1,5 @@
+D:\Projects\76 - GitTest\CodeTest\bin\Debug\CodeTest.exe.config
+D:\Projects\76 - GitTest\CodeTest\bin\Debug\CodeTest.exe
+D:\Projects\76 - GitTest\CodeTest\bin\Debug\CodeTest.pdb
+D:\Projects\76 - GitTest\CodeTest\obj\Debug\CodeTest.exe
+D:\Projects\76 - GitTest\CodeTest\obj\Debug\CodeTest.pdb
