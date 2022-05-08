@@ -9,7 +9,7 @@ namespace CodeTest
 {
     class Point2D
     {
-        double x, y;
+        public double x, y;
         public Point2D(double X_Value, double Y_Value)
         {
             x = X_Value;
@@ -25,48 +25,45 @@ namespace CodeTest
             Console.WriteLine("Verwende {0} als algoritmus", type == 1 ? "euklid" : "simple");
             var points = GetPoints("C:\\Users\\max.mustermann\\repos\\codeschnipsel\\points.csv");
 
-            Tuple<double, double> p1 = null;
-            Tuple<double, double> p2 = null;
             int p1Index = -1, p2Index = -1;
             var minDist = double.MaxValue;
-            for (int i = 0; i < points.Length - 1; i++)
+            for (int i = 0; i < points.Count - 1; i++)
             {
-                for (int j = i + 1; j < points.Length; j++)
+                for (int j = i + 1; j < points.Count; j++)
                 {
-                    var d = CalculateDistance((float)points[i].Item1, (float)points[i].Item2, (float)points[j].Item1, (float)points[j].Item2, type);
+                    var d = CalculateDistance(points[i], points[j],type);
                     if (d < minDist)
                     {
                         minDist = d;
-                        p1 = new Tuple<double, double>(points[i].Item1, points[i].Item2);
-                        p2 = new Tuple<double, double>(points[j].Item1, points[j].Item2);
                         p1Index = i;
                         p2Index = j;
                     }
                 }
             }
             Console.WriteLine("Minimaler Abstand ist {0}", minDist);
-            Console.WriteLine("Point 1 @ idx {0}: ({1}, {2}", p1Index, p1.Item1, p1.Item2);
-            Console.WriteLine("Point 2 @ idx {0}: ({1}, {1}", p2Index, p2.Item1, p2.Item2);
+            Console.WriteLine("Point 1 @ idx {0}: ({1}, {2}", p1Index, points[p1Index].x, points[p1Index].y);
+            Console.WriteLine("Point 2 @ idx {0}: ({1}, {1}", p2Index, points[p2Index].x, points[p2Index].y);
         }
 
-        private static Tuple<double, double>[] GetPoints(string F)
+        private static List<Point2D> GetPoints(string F)
         {
+            
             return File.ReadAllLines(F).
                 Select(l => l.Split(';'))
-                .Select(a => new Tuple<double, double>(double.Parse(a[0]), double.Parse(a[1])))
-                .ToArray();
+                .Select(a => new Point2D(double.Parse(a[0]), double.Parse(a[1])))
+                .ToList();
         }
 
-        public static float CalculateDistance(float x1, float y1, float x2, float y2, int type)
+        public static double CalculateDistance(Point2D P1, Point2D P2, int type)
         {
-            float result = 0f;
+            double result = 0;
             if (type == 1)
             {
-                result = Convert.ToSingle(Math.Sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
+                result = Convert.ToSingle(Math.Sqrt((P2.x - P1.x) * (P2.x - P1.x) + (P2.y - P1.y) * (P2.y - P1.y)));
             }
             else if (type == 2)
             {
-                result = Math.Abs(x2 - x1) + Math.Abs(y1 - y2);
+                result = Math.Abs(P2.x - P1.x) + Math.Abs(P2.y - P1.y);
             }
             return result;
         }
