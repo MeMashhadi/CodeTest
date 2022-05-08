@@ -26,7 +26,7 @@ namespace CodeTest
                 for (int j = 0; j < points.Length; j++)
                 {
                     if (i == j) goto next;
-                    var d = CalculateDistance((float)points[i].Item1, (float)points[i].Item2, (float)points[j].Item1, (float)points[j].Item2, 2);
+                    var d = CalculateDistance((float)points[i].Item1, (float)points[i].Item2, (float)points[j].Item1, (float)points[j].Item2, type);
                     if (d < minDist)
                     {
                         minDist = d;
