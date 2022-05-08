@@ -7,6 +7,11 @@ using System.IO;
 
 namespace CodeTest
 {
+    enum DistanceType
+    {
+        euklid,
+        simple
+    }
     class Program
     {
         static void Main(string[] args)
