@@ -20,12 +20,10 @@ namespace CodeTest
             Tuple<double, double> p2 = null;
             int p1Index = -1, p2Index = -1;
             var minDist = double.MaxValue;
-            for (int i = 0; i < points.Length; i++)
+            for (int i = 0; i < points.Length - 1; i++)
             {
-
-                for (int j = 0; j < points.Length; j++)
+                for (int j = i + 1; j < points.Length; j++)
                 {
-                    if (i == j) goto next;
                     var d = CalculateDistance((float)points[i].Item1, (float)points[i].Item2, (float)points[j].Item1, (float)points[j].Item2, type);
                     if (d < minDist)
                     {
@@ -36,7 +34,6 @@ namespace CodeTest
                         p2Index = j;
                     }
                 }
-                next:;
             }
             Console.WriteLine("Minimaler Abstand ist {0}", minDist);
             Console.WriteLine("Point 1 @ idx {0}: ({1}, {2}", p1Index, p1.Item1, p1.Item2);
