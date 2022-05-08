@@ -7,6 +7,15 @@ using System.IO;
 
 namespace CodeTest
 {
+    class Point2D
+    {
+        double x, y;
+        public Point2D(double X_Value, double Y_Value)
+        {
+            x = X_Value;
+            y = Y_Value;
+        }
+    }
     class Program
     {
         static void Main(string[] args)
